@@ -14,7 +14,7 @@ class Enigma
 
   def generate_keys(cipherkey)
     @key_a.each_with_object({}) do |key, holder|
-      holder[key.to_sym] = cipher_index(cipherkey, key)
+      holder[key.to_sym] = cipher_shift(cipherkey, key)
     end
   end
 
@@ -40,6 +40,6 @@ class Enigma
     Time.now.strftime("%d%m%y")
   end
 
-  
+
 
 end

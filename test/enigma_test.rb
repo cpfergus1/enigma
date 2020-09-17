@@ -49,7 +49,8 @@ class EnigmaTest <Minitest::Test
   def test_can_pull_cipher_key_shift
     cipherkey = '02715'
     key = 'A'
-    assert_equal 2, @enigma.cipher_shift
+    assert_equal 2, @enigma.cipher_shift(cipherkey, key)
+  end
 
 
   def test_enigma_can_encrypt
@@ -72,6 +73,4 @@ class EnigmaTest <Minitest::Test
                }
     assert_equal expected, @enigma.total_shift(cipherkey, cipherdate)
   end
-
-
 end
