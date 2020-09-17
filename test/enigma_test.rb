@@ -51,7 +51,7 @@ class EnigmaTest <Minitest::Test
     key = 'A'
     assert_equal 2, @enigma.cipher_shift
 
-  
+
   def test_enigma_can_encrypt
     skip
     expected = {
@@ -61,4 +61,17 @@ class EnigmaTest <Minitest::Test
                }
     assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
   end
+
+  def test_enigma_can_create_total_shift
+    cipherkey = '02715'
+    cipherdate = '040895'
+    expected = { A: 3,
+                 B: 27,
+                 C: 73,
+                 D: 20
+               }
+    assert_equal expected, @enigma.total_shift(cipherkey, cipherdate)
+  end
+
+
 end
