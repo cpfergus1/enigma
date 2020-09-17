@@ -13,21 +13,23 @@ class EnigmaTest <Minitest::Test
   end
 
   def test_enigma_can_create_cipherkey
-    assert_equal 5, enigma.fill_in_cipherkey.length
+    assert_equal 5, @enigma.fill_in_cipherkey.length
   end
 
   def test_enigma_can_create_cipherdate
-    assert_equal Time.now.strftime("%d%m%y"), enigma.fill_in_cipherdate
+    expected = Time.now.strftime("%d%m%y")
+    assert_equal expected, @enigma.fill_in_cipherdate
   end
 
   def test_enigma_can_generate_keys
+    cipherkey = '02715'
     expected = { A: '02',
                  B: '27',
                  C: '71',
                  D: '15'
                }
     assert_equal expected, @enigma.generate_keys(cipherkey)
-    
+  end
 
   def test_enigma_can_encrypt
     skip
