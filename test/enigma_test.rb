@@ -20,5 +20,12 @@ class EnigmaTest <Minitest::Test
     assert_equal Time.now.strftime("%d%m%y"), enigma.fill_in_cipherdate
   end
 
+  def test_enigma_can_encrypt
+    expected = {
+                encryption: "keder ohulw",
+                key: "02715",
+                date: "040895"
+               }
+    assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
 
 end

@@ -3,7 +3,6 @@ class Enigma
   attr_reader :message, :cipherkey, :cipherdate
 
   def initialize
-
   end
 
   def fill_in_cipherkey
