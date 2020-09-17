@@ -28,7 +28,7 @@ class EnigmaTest <Minitest::Test
                  C: 71,
                  D: 15
                }
-    assert_equal expected, @enigma.generate_keys(cipherkey)
+    assert_equal expected, @enigma.generate_shift(cipherkey)
   end
 
   def test_enigma_can_create_offsets
@@ -48,7 +48,7 @@ class EnigmaTest <Minitest::Test
 
   def test_can_pull_cipher_key_shift
     cipherkey = '02715'
-    key = 'A'
+    key = :A
     assert_equal 2, @enigma.cipher_shift(cipherkey, key)
   end
 
@@ -72,5 +72,21 @@ class EnigmaTest <Minitest::Test
                  D: 20
                }
     assert_equal expected, @enigma.total_shift(cipherkey, cipherdate)
+  end
+
+  def test_engima_can_create_key
+    mock_shift = { A: 1,
+                   B: 2,
+                   C: 3,
+                   D: 4
+                 }
+    @enigma.stubs(:alphabet).returns [ 'a', 'b', 'c', 'd' ]
+
+    expected = {  A: { 'a' => 'b', 'b' => 'c', 'c' => 'd', 'd' => 'a' },
+                  B: { 'a' => 'c', 'b' => 'd', 'c' => 'a', 'd' => 'b' },
+                  C: { 'a' => 'd', 'b' => 'a', 'c' => 'b', 'd' => 'c' },
+                  D: { 'a' => 'a', 'b' => 'b', 'c' => 'c', 'd' => 'd' }
+                }
+    assert_equal expected, @enigma.generate_keys(mock_shift)
   end
 end

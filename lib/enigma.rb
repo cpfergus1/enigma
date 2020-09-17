@@ -1,20 +1,21 @@
 class Enigma
 
-  attr_reader :message, :cipherkey, :cipherdate
+  attr_reader :key_a, :alphabet
 
   def initialize
-    @key_a =Array('A'..'D')
+    @key_a =Array(:A..:D)
     @alphabet = Array('a'..'z') + [' ']
   end
 
   def encrypt(message, cipherkey = nil, cipherdate = nil)
     fill_in_cipherkey if cipherkey.is_nil?
     fill_in_cipherdate if cipherdate.is_nil?
+    total_shift(cipherkey, cipherdate)
   end
 
-  def generate_keys(cipherkey)
+  def generate_shift(cipherkey)
     @key_a.each_with_object({}) do |key, holder|
-      holder[key.to_sym] = cipher_shift(cipherkey, key)
+      holder[key] = cipher_shift(cipherkey, key)
     end
   end
 
@@ -24,7 +25,7 @@ class Enigma
 
   def offsets(cipherdate)
     @key_a.each_with_object({}) do |key, holder|
-      holder[key.to_sym] = last_four(cipherdate)[@key_a.index(key)].to_i
+      holder[key] = last_four(cipherdate)[@key_a.index(key)].to_i
     end
   end
 
@@ -40,6 +41,17 @@ class Enigma
     Time.now.strftime("%d%m%y")
   end
 
+  def total_shift(cipherkey, cipherdate)
+    generate_shift(cipherkey).merge(offsets(cipherdate)) do |key, shift, offset|
+      shift + offset
+    end
+  end
 
+  def generate_keys(shift_hash)
+    @key_a.each_with_object({}) do |key,output|
+      # require "pry"; binding.pry
+      output[key] = Hash[alphabet.zip(alphabet.rotate(shift_hash[key]))]
+    end
+  end
 
 end
