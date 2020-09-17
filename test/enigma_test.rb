@@ -1,6 +1,6 @@
-require 'test_helper'
+require './test/test_helper'
 require './lib/enigma.rb'
-require './lib/cypher.rb'
+require './lib/cipher.rb'
 
 class EnigmaTest <Minitest::Test
 
