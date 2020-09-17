@@ -14,18 +14,32 @@ class Enigma
 
   def generate_keys(cipherkey)
     @key_a.each_with_object({}) do |key, holder|
-      holder[key.to_sym] = cipherkey[@key_a.index(key)..(@key_a.index(key)+1)]
+      holder[key.to_sym] = cipher_index(cipherkey, key)
     end
   end
 
-  
+  def cipher_shift(cipherkey, key)
+    cipherkey[@key_a.index(key)..(@key_a.index(key)+1)].to_i
+  end
+
+  def offsets(cipherdate)
+    @key_a.each_with_object({}) do |key, holder|
+      holder[key.to_sym] = last_four(cipherdate)[@key_a.index(key)].to_i
+    end
+  end
+
+  def last_four(cipherdate)
+    (cipherdate.to_i ** 2).to_s[-4 .. -1]
+  end
 
   def fill_in_cipherkey
-    (rand(10 ** 5)).to_s
+    rand.to_s[2..6]
   end
 
   def fill_in_cipherdate
     Time.now.strftime("%d%m%y")
   end
+
+  
 
 end

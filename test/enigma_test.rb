@@ -23,14 +23,35 @@ class EnigmaTest <Minitest::Test
 
   def test_enigma_can_generate_keys
     cipherkey = '02715'
-    expected = { A: '02',
-                 B: '27',
-                 C: '71',
-                 D: '15'
+    expected = { A: 2,
+                 B: 27,
+                 C: 71,
+                 D: 15
                }
     assert_equal expected, @enigma.generate_keys(cipherkey)
   end
 
+  def test_enigma_can_create_offsets
+    cipherdate = '040895'
+    expected = { A: 1,
+                 B: 0,
+                 C: 2,
+                 D: 5
+               }
+    assert_equal expected, @enigma.offsets(cipherdate)
+  end
+
+  def test_can_pull_last_of_date_squared
+    cipherdate = '040895'
+    assert_equal '1025', @enigma.last_four(cipherdate)
+  end
+
+  def test_can_pull_cipher_key_shift
+    cipherkey = '02715'
+    key = 'A'
+    assert_equal 2, @enigma.cipher_shift
+
+  
   def test_enigma_can_encrypt
     skip
     expected = {
@@ -40,5 +61,4 @@ class EnigmaTest <Minitest::Test
                }
     assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
   end
-
 end
