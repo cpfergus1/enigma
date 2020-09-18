@@ -1,7 +1,6 @@
-require_relative 'cipher'
+require_relative 'enigma'
 
-class Encrypt
-  include Cipher
+class Encrypt < Enigma
   attr_reader :key_a, :alphabet
 
   def initialize
@@ -9,9 +8,9 @@ class Encrypt
     @alphabet = Array('a'..'z') + [' ']
   end
 
-  def encryption(encryption, cipherkey, cipherdate)
+  def encryption(message, cipherkey, cipherdate)
     keys = generate_keys(total_shift(cipherkey, cipherdate))
-    { encryption: cipher(encryption, keys), key: cipherkey, date: cipherdate }
+    { encryption: cipher(message.downcase, keys), key: cipherkey, date: cipherdate }
   end
 
   def total_shift(cipherkey, cipherdate)
@@ -20,11 +19,4 @@ class Encrypt
     end
   end
 
-  def fill_in_cipherkey
-    rand.to_s[2..6]
-  end
-
-  def fill_in_cipherdate
-    Time.now.strftime('%d%m%y')
-  end
 end

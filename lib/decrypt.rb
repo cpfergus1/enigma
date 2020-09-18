@@ -1,13 +1,10 @@
-require_relative 'cipher'
+require_relative 'enigma'
 
-class Decrypt
-  include Cipher
+class Decrypt < Enigma
+
   attr_reader :key_a, :alphabet
 
-  def initialize
-    @key_a = Array(:A..:D)
-    @alphabet = Array('a'..'z') + [' ']
-  end
+
 
   def decryption(encryption, cipherkey, cipherdate)
     keys = generate_keys(total_shift(cipherkey, cipherdate))
