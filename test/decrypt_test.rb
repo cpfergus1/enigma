@@ -50,7 +50,7 @@ class DecryptTest <Minitest::Test
                 key: "02715",
                 date: "040895"
                }
-    assert_equal expected, @decrypt.decrypt("keder ohulw", "02715", "040895")
+    assert_equal expected, @decrypt.decryption("keder ohulw", "02715", "040895")
   end
 
   def test_decrypt_can_create_total_shift
@@ -86,7 +86,7 @@ class DecryptTest <Minitest::Test
                     C: { 'a' => 'b', 'b' => 'c', 'c' => 'd', 'd' => 'a' },
                     D: { 'a' => 'a', 'b' => 'b', 'c' => 'c', 'd' => 'd' } }
     expected = 'dddd'
-    assert_equal expected, @decrypt.decryption(message, mock_shift)
+    assert_equal expected, @decrypt.cipher(message, mock_shift)
   end
 
 end

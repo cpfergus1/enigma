@@ -59,7 +59,7 @@ class EncryptTest <Minitest::Test
                 key: "02715",
                 date: "040895"
                }
-    assert_equal expected, @encrypt.encrypt("hello world", "02715", "040895")
+    assert_equal expected, @encrypt.encryption("hello world", "02715", "040895")
   end
 
   def test_encrypt_can_create_total_shift
@@ -95,7 +95,7 @@ class EncryptTest <Minitest::Test
                     C: { 'a' => 'd', 'b' => 'a', 'c' => 'b', 'd' => 'c' },
                     D: { 'a' => 'a', 'b' => 'b', 'c' => 'c', 'd' => 'd' } }
     expected = 'bdbd'
-    assert_equal expected, @encrypt.encryption(message, mock_shift)
+    assert_equal expected, @encrypt.cipher(message, mock_shift)
   end
 
 end
