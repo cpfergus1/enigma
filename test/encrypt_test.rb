@@ -84,9 +84,18 @@ class EncryptTest <Minitest::Test
     expected = {  A: { 'a' => 'b', 'b' => 'c', 'c' => 'd', 'd' => 'a' },
                   B: { 'a' => 'c', 'b' => 'd', 'c' => 'a', 'd' => 'b' },
                   C: { 'a' => 'd', 'b' => 'a', 'c' => 'b', 'd' => 'c' },
-                  D: { 'a' => 'a', 'b' => 'b', 'c' => 'c', 'd' => 'd' }
-                }
+                  D: { 'a' => 'a', 'b' => 'b', 'c' => 'c', 'd' => 'd' } }
     assert_equal expected, @encrypt.generate_keys(mock_shift)
+  end
+
+  def test_encryption
+    message = 'abcd'
+    mock_shift = {  A: { 'a' => 'b', 'b' => 'c', 'c' => 'd', 'd' => 'a' },
+                    B: { 'a' => 'c', 'b' => 'd', 'c' => 'a', 'd' => 'b' },
+                    C: { 'a' => 'd', 'b' => 'a', 'c' => 'b', 'd' => 'c' },
+                    D: { 'a' => 'a', 'b' => 'b', 'c' => 'c', 'd' => 'd' } }
+    expected = 'bdbd'
+    assert_equal expected, @encrypt.encryption(message, mock_shift)
   end
 
 end
