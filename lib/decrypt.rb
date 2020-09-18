@@ -1,20 +1,14 @@
-require_relative 'enigma'
+require './lib/enigma'
+require 'json'
 
-class Decrypt < Enigma
+message_to_decrypt = File.open(ARGV[0],'r')
+encrypted = JSON.load(message_to_decrypt)
+message_to_decrypt.close
 
-  attr_reader :key_a, :alphabet
+enigma = Enigma.new
+encryption = enigma.decrypt(encrypted["encryption"], ARGV[2], ARGV[3])
 
-
-
-  def decryption(encryption, cipherkey, cipherdate)
-    keys = generate_keys(total_shift(cipherkey, cipherdate))
-    { decryption: cipher(encryption, keys), key: cipherkey, date: cipherdate }
-  end
-
-  def total_shift(cipherkey, cipherdate)
-    generate_shift(cipherkey).merge(offsets(cipherdate)) do |_key, shift, offset|
-      (shift + offset) * -1
-    end
-  end
-
-end
+encrypted = File.open(ARGV[1],'w')
+encrypted.write JSON.dump(encryption)
+encrypted.close
+puts "Created 'decrypted.txt with the key #{enigma.cipherkey} and date #{enigma.cipherdate}"
