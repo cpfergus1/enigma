@@ -2,7 +2,7 @@ require './test/test_helper'
 require './lib/enigma.rb'
 require './lib/cipher.rb'
 
-class EnigmaTest <Minitest::Test
+class EncryptTest <Minitest::Test
 
   def setup
     @enigma = Enigma.new
@@ -54,7 +54,6 @@ class EnigmaTest <Minitest::Test
 
 
   def test_enigma_can_encrypt
-    skip
     expected = {
                 encryption: "keder ohulw",
                 key: "02715",
@@ -89,4 +88,5 @@ class EnigmaTest <Minitest::Test
                 }
     assert_equal expected, @enigma.generate_keys(mock_shift)
   end
+
 end

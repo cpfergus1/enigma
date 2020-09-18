@@ -1,4 +1,4 @@
-class Enigma
+class Encrypt
 
   attr_reader :key_a, :alphabet
 
@@ -11,6 +11,9 @@ class Enigma
     fill_in_cipherkey if cipherkey.is_nil?
     fill_in_cipherdate if cipherdate.is_nil?
     total_shift(cipherkey, cipherdate)
+    encoded_message = []
+    while message.length > 0
+
   end
 
   def generate_shift(cipherkey)
@@ -49,7 +52,6 @@ class Enigma
 
   def generate_keys(shift_hash)
     @key_a.each_with_object({}) do |key,output|
-      # require "pry"; binding.pry
       output[key] = Hash[alphabet.zip(alphabet.rotate(shift_hash[key]))]
     end
   end
