@@ -1,3 +1,5 @@
+require_relative 'cypher_key'
+
 class Enigma
   attr_reader :key_a, :alphabet, :message, :cipherkey, :cipherdate
 

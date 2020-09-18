@@ -1,5 +1,6 @@
 require './test/test_helper'
 require './lib/enigma.rb'
+require './lib/ciypher_key.rb'
 
 
 class EnigmaTest <Minitest::Test
