@@ -19,8 +19,7 @@ class KeyMakerTest <Minitest::Test
     expected = { A: 1,
                  B: 0,
                  C: 2,
-                 D: 5
-               }
+                 D: 5 }
     assert_equal expected, key_maker.create_offsets
   end
 
@@ -29,9 +28,26 @@ class KeyMakerTest <Minitest::Test
     expected = { A: 2,
                  B: 27,
                  C: 71,
-                 D: 15
-               }
+                 D: 15 }
     assert_equal expected, key_maker.generate_shift
+  end
+
+  def test_encrypt_can_create_total_shift
+    key_maker = KeyMaker.new(1, '02715', '040895')
+    expected = { A: 3,
+                 B: 27,
+                 C: 73,
+                 D: 20
+               }
+    assert_equal expected, key_maker.total_shift
+
+    key_maker = KeyMaker.new(-1, '02715', '040895')
+    expected = { A: -3,
+                 B: -27,
+                 C: -73,
+                 D: -20
+               }
+    assert_equal expected, key_maker.total_shift
   end
 
 end
