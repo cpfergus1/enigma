@@ -14,16 +14,7 @@ class EnigmaTest <Minitest::Test
     assert Enigma, @enigma
   end
 
-  def test_encrypt_can_create_cipherkey
-    enigma = Enigma.new
-    assert_equal 5, @enigma.fill_in_cipherkey(nil).length
-  end
 
-  def test_encrypt_can_create_cipherdate
-    enigma = Enigma.new
-    expected = Time.now.strftime("%d%m%y")
-    assert_equal expected, enigma.fill_in_cipherdate(nil)
-  end
 
   def test_encrypt_can_generate_keys
     expected = { A: 2,
@@ -41,10 +32,6 @@ class EnigmaTest <Minitest::Test
                  D: 5
                }
     assert_equal expected, @enigma.offsets
-  end
-
-  def test_can_pull_last_of_date_squared
-      assert_equal '1025', @enigma.last_four
   end
 
   def test_can_pull_cipher_key_shift

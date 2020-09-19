@@ -33,12 +33,6 @@ class Enigma
       date: @cipherdate }
   end
 
-  def total_shift(shift_direction)
-    generate_shift.merge(offsets) do |_key, shift, offset|
-      (shift + offset) * shift_direction
-    end
-  end
-
   def cipher(message, key_hash)
     cipher = []
     key_rotate = 0
@@ -51,24 +45,10 @@ class Enigma
     cipher.join
   end
 
-  def generate_shift
-    @key_a.each_with_object({}) do |key, holder|
-      holder[key] = cipher_shift(key)
+  def total_shift(shift_direction)
+    generate_shift.merge(offsets) do |_key, shift, offset|
+      (shift + offset) * shift_direction
     end
-  end
-
-  def cipher_shift(key)
-    cipherkey[indicie(key)..(indicie(key) + 1)].to_i
-  end
-
-  def offsets
-    @key_a.each_with_object({}) do |key, holder|
-      holder[key] = last_four[indicie(key)].to_i
-    end
-  end
-
-  def last_four
-    (cipherdate.to_i**2).to_s[-4..-1]
   end
 
   def generate_keys(shift_hash)
