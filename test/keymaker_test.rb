@@ -71,4 +71,17 @@ class KeyMakerTest <Minitest::Test
     key_maker.stubs(:alphabet).returns ['a','b','c','d']
     assert_equal expected, key_maker.zip_to_hash(:D)
   end
+
+  def test_decrypt_can_create_key
+    key_maker = KeyMaker.new(1, '02715', '040895')
+    mock_shift = { A: 1, B: 2, C: 3, D: 4 }
+    key_maker.stubs(:total_shift).returns mock_shift
+    key_maker.stubs(:alphabet).returns [ 'a', 'b', 'c', 'd' ]
+
+    expected = {  A: { 'a' => 'b', 'b' => 'c', 'c' => 'd', 'd' => 'a' },
+                  B: { 'a' => 'c', 'b' => 'd', 'c' => 'a', 'd' => 'b' },
+                  C: { 'a' => 'd', 'b' => 'a', 'c' => 'b', 'd' => 'c' },
+                  D: { 'a' => 'a', 'b' => 'b', 'c' => 'c', 'd' => 'd' } }
+    assert_equal expected, key_maker.generate_keys
+  end
 end
