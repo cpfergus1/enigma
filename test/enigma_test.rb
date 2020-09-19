@@ -16,29 +16,6 @@ class EnigmaTest <Minitest::Test
 
 
 
-  def test_encrypt_can_generate_keys
-    expected = { A: 2,
-                 B: 27,
-                 C: 71,
-                 D: 15
-               }
-    assert_equal expected, @enigma.generate_shift
-  end
-
-  def test_encrypt_can_create_offsets
-    expected = { A: 1,
-                 B: 0,
-                 C: 2,
-                 D: 5
-               }
-    assert_equal expected, @enigma.offsets
-  end
-
-  def test_can_pull_cipher_key_shift
-    key = :A
-    # @engima.stubs(:cipherkey).returns '02715'
-    assert_equal 2, @enigma.cipher_shift(key)
-  end
 
 
   def test_encrypt_can_encrypt

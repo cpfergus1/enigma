@@ -34,12 +34,31 @@ class CipherKeyTest <Minitest::Test
 
   def test_encrypt_can_create_offsets
     cipher_key= CipherKey.new('02715', '040895')
-    key = [:A, :B, :C, :D]
+    keys = [:A, :B, :C, :D]
     expected = { A: 1,
                  B: 0,
                  C: 2,
                  D: 5
                }
-    assert_equal expected, cipher_key.create_offsets(key)
+    assert_equal expected, cipher_key.create_offsets(keys)
   end
+
+  def test_can_pull_cipher_key_shift
+    cipher_key= CipherKey.new('02715', '040895')
+    keys = [:A, :B, :C, :D]
+    key = :A
+    assert_equal 2, cipher_key.cipher_shift(keys, key)
+  end
+
+  def test_encrypt_can_generate_keys
+    cipher_key= CipherKey.new('02715', '040895')
+    keys = [:A, :B, :C, :D]
+    expected = { A: 2,
+                 B: 27,
+                 C: 71,
+                 D: 15
+               }
+    assert_equal expected, cipher_key.generate_shift(keys)
+  end
+
 end

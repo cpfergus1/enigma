@@ -25,5 +25,14 @@ class CipherKey
     (cipherdate.to_i**2).to_s[-4..-1]
   end
 
+  def generate_shift(key_array)
+    key_array.each_with_object({}) do |key, holder|
+      holder[key] = cipher_shift(key_array, key)
+    end
+  end
+
+  def cipher_shift(key_array, key)
+    cipherkey[key_array.index(key)..(key_array.index(key) + 1)].to_i
+  end
 
 end
