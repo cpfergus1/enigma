@@ -14,4 +14,15 @@ class CipherKeyTest <Minitest::Test
     assert_equal '040895', cipher_key.cipherdate
   end
 
+  def test_encrypt_can_create_cipherkey
+    cipher_key= CipherKey.new
+    assert_equal 5, cipher_key.fill_in_cipherkey.length
+  end
+
+  def test_encrypt_can_create_cipherdate
+    cipher_key= CipherKey.new
+    expected = Time.now.strftime("%d%m%y")
+    assert_equal expected, cipher_key.fill_in_cipherdate
+  end
+
 end

@@ -81,22 +81,6 @@ class Enigma
     Hash[alphabet.zip(alphabet.rotate(shift_hash[key]))]
   end
 
-  def fill_in_cipherkey(cipherkey)
-    if cipherkey
-      @cipherkey = cipherkey
-    else
-      @cipherkey = rand.to_s[2..6]
-    end
-  end
-
-  def fill_in_cipherdate(cipherdate)
-    if cipherdate
-      @cipherdate = cipherdate
-    else
-      @cipherdate = Time.now.strftime('%d%m%y')
-    end
-  end
-
   def indicie(key)
     @key_a.index(key)
   end
