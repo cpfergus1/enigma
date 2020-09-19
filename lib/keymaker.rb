@@ -30,13 +30,7 @@ class KeyMaker
     end
   end
 
-  def generate_keys(shift_hash)
-    @key_a.each_with_object({}) do |key, output|
-      output[key] = zip_to_hash(shift_hash, key)
-    end
-  end
-
-  def zip_to_hash(shift_hash, key)
-    Hash[alphabet.zip(alphabet.rotate(shift_hash[key]))]
+  def zip_to_hash(key)
+    Hash[alphabet.zip(alphabet.rotate(total_shift[key]))]
   end
 end

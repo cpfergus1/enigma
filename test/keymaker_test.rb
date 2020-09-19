@@ -50,4 +50,10 @@ class KeyMakerTest <Minitest::Test
     assert_equal expected, key_maker.total_shift
   end
 
+  def test_keymaker_can_zip_hash
+    expected = { 'a' => 'd', 'b' => 'a', 'c' => 'b', 'd' => 'c' }
+    key_maker = KeyMaker.new(1, '02715', '040895')
+    key_maker.stubs(:alphabet).returns ['a','b','c','d']
+    assert_equal expected, key_maker.zip_to_hash(:A)
+  end
 end
