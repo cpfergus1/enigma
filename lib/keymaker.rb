@@ -34,7 +34,7 @@ class KeyMaker
     @keys = key_array.each_with_object({}) do |key, output|
       output[key] = zip_to_hash(key)
     end
-    
+
   end
 
   def zip_to_hash(key)
