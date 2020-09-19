@@ -3,32 +3,22 @@ class CipherKey
   attr_reader :cipherkey, :cipherdate
 
   def initialize(cipherkey = nil, cipherdate = nil)
-    @cipherkey = cipherkey
-    @cipherdate = cipherdate
+    @cipherkey = cipherkey unless cipherdate.nil?
+    @cipherdate = cipherdate unless cipherdate.nil?
+    @cipherkey = fill_in_cipherkey if @cipherkey.nil?
+    @cipherdate = fill_in_cipherdate if @cipherdate.nil?
   end
 
   def fill_in_cipherkey
-    @cipherkey = rand.to_s[2..6] if @cipherkey.nil?
+    rand.to_s[2..6]
   end
 
   def fill_in_cipherdate
-    @cipherdate = Time.now.strftime('%d%m%y') if @cipherdate.nil?
-  end
-
-  def create_offsets(key_array)
-    key_array.each_with_object({}) do |key, holder|
-      holder[key] = last_four[key_array.index(key)].to_i
-    end
+    Time.now.strftime('%d%m%y')
   end
 
   def last_four
     (cipherdate.to_i**2).to_s[-4..-1]
-  end
-
-  def generate_shift(key_array)
-    key_array.each_with_object({}) do |key, holder|
-      holder[key] = cipher_shift(key_array, key)
-    end
   end
 
   def cipher_shift(key_array, key)

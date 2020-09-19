@@ -14,10 +14,6 @@ class EnigmaTest <Minitest::Test
     assert Enigma, @enigma
   end
 
-
-
-
-
   def test_encrypt_can_encrypt
     expected = {
                 encryption: "keder ohulw",
@@ -25,16 +21,6 @@ class EnigmaTest <Minitest::Test
                 date: "040895"
                }
     assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
-  end
-
-  def test_encrypt_can_create_total_shift
-    expected = { A: 3,
-                 B: 27,
-                 C: 73,
-                 D: 20
-               }
-    # @enigma.stubs(:cipherkey).returns '02715'
-    assert_equal expected, @enigma.total_shift(1)
   end
 
   def test_engima_can_create_key

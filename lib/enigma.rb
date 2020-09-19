@@ -1,4 +1,5 @@
-require_relative 'cypher_key'
+require_relative 'cipher_key'
+require_relative 'keymaker'
 
 class Enigma
   attr_reader :key_a, :alphabet, :message, :cipherkey, :cipherdate
@@ -45,23 +46,9 @@ class Enigma
     cipher.join
   end
 
-  def total_shift(shift_direction)
-    generate_shift.merge(offsets) do |_key, shift, offset|
-      (shift + offset) * shift_direction
-    end
-  end
 
-  def generate_keys(shift_hash)
-    @key_a.each_with_object({}) do |key, output|
-      output[key] = zip_to_hash(shift_hash, key)
-    end
-  end
 
-  def zip_to_hash(shift_hash, key)
-    Hash[alphabet.zip(alphabet.rotate(shift_hash[key]))]
-  end
 
-  def indicie(key)
-    @key_a.index(key)
-  end
+
+
 end
