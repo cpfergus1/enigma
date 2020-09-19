@@ -55,5 +55,20 @@ class KeyMakerTest <Minitest::Test
     key_maker = KeyMaker.new(1, '02715', '040895')
     key_maker.stubs(:alphabet).returns ['a','b','c','d']
     assert_equal expected, key_maker.zip_to_hash(:A)
+
+    expected = { 'a' => 'd', 'b' => 'a', 'c' => 'b', 'd' => 'c' }
+    key_maker = KeyMaker.new(1, '02715', '040895')
+    key_maker.stubs(:alphabet).returns ['a','b','c','d']
+    assert_equal expected, key_maker.zip_to_hash(:B)
+
+    expected = { 'a' => 'b', 'b' => 'c', 'c' => 'd', 'd' => 'a' }
+    key_maker = KeyMaker.new(1, '02715', '040895')
+    key_maker.stubs(:alphabet).returns ['a','b','c','d']
+    assert_equal expected, key_maker.zip_to_hash(:C)
+
+    expected = { 'a' => 'a', 'b' => 'b', 'c' => 'c', 'd' => 'd' }
+    key_maker = KeyMaker.new(1, '02715', '040895')
+    key_maker.stubs(:alphabet).returns ['a','b','c','d']
+    assert_equal expected, key_maker.zip_to_hash(:D)
   end
 end
