@@ -4,10 +4,18 @@ require './lib/keymaker'
 
 
 class KeyMakerTest <Minitest::Test
-  
+
+  def test_keymaker_has_attributes
+    key_maker = KeyMaker.new(1, '02715', '040895')
+    assert_equal [:A, :B, :C, :D], key_maker.key_array
+    assert_equal 27, key_maker.alphabet.length
+    assert_equal Hash.new(0), key_maker.keys
+    assert_equal 1, key_maker.shift_direction
+    assert_equal CipherKey, key_maker.cipher_key.class
+  end
+
   def test_encrypt_can_create_offsets
-    cipher_key= CipherKey.new('02715', '040895')
-    key_maker = KeyMaker.new
+    key_maker = KeyMaker.new(1, '02715', '040895')
     expected = { A: 1,
                  B: 0,
                  C: 2,
@@ -17,8 +25,7 @@ class KeyMakerTest <Minitest::Test
   end
 
   def test_encrypt_can_generate_keys
-    cipher_key= CipherKey.new('02715', '040895')
-    key_maker = KeyMaker.new
+    key_maker = KeyMaker.new(1, '02715', '040895')
     expected = { A: 2,
                  B: 27,
                  C: 71,
