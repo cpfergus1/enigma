@@ -2,9 +2,7 @@ require './test/test_helper'
 require './lib/cipher_key.rb'
 require './lib/keymaker'
 
-
 class KeyMakerTest <Minitest::Test
-
   def test_keymaker_has_attributes
     key_maker = KeyMaker.new(1, '02715', '040895')
     assert_equal [:A, :B, :C, :D], key_maker.key_array
@@ -37,16 +35,14 @@ class KeyMakerTest <Minitest::Test
     expected = { A: 3,
                  B: 27,
                  C: 73,
-                 D: 20
-               }
+                 D: 20 }
     assert_equal expected, key_maker.total_shift
 
     key_maker = KeyMaker.new(-1, '02715', '040895')
     expected = { A: -3,
                  B: -27,
                  C: -73,
-                 D: -20
-               }
+                 D: -20 }
     assert_equal expected, key_maker.total_shift
   end
 
