@@ -14,17 +14,20 @@ class CipherKeyTest <Minitest::Test
 
   def test_cipherkey_can_create_a_cipherkey
     cipher_key= CipherKey.new
-    assert_equal 5, cipher_key.fill_in_cipherkey.length
+    assert_equal 5, cipher_key.cipherkey.length
 
     cipher_key= CipherKey.new('01234', '180920')
-    cipher_key.fill_in_cipherkey
     assert_equal '01234', cipher_key.cipherkey
   end
 
   def test_encrypt_can_create_cipherdate
     cipher_key= CipherKey.new
     expected = Time.now.strftime("%d%m%y")
-    assert_equal expected, cipher_key.fill_in_cipherdate
+    assert_equal expected, cipher_key.cipherdate
+
+    cipher_key= CipherKey.new('01234', '180920')
+    assert_equal '180920', cipher_key.cipherdate
+
   end
 
   def test_can_pull_last_of_date_squared

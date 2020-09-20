@@ -3,18 +3,24 @@ class CipherKey
   attr_reader :cipherkey, :cipherdate
 
   def initialize(cipherkey = nil, cipherdate = nil)
-    @cipherkey = cipherkey unless cipherdate.nil?
-    @cipherdate = cipherdate unless cipherdate.nil?
-    @cipherkey = fill_in_cipherkey if @cipherkey.nil?
-    @cipherdate = fill_in_cipherdate if @cipherdate.nil?
+    @cipherkey = fill_in_cipherkey(cipherkey)
+    @cipherdate = fill_in_cipherdate(cipherdate)
   end
 
-  def fill_in_cipherkey
-    rand.to_s[2..6]
+  def fill_in_cipherkey(cipherkey)
+    if cipherkey.nil?
+      rand.to_s[2..6]
+    else
+      cipherkey
+    end
   end
 
-  def fill_in_cipherdate
-    Time.now.strftime('%d%m%y')
+  def fill_in_cipherdate(cipherdate)
+    if cipherdate.nil?
+      Time.now.strftime('%d%m%y')
+    else
+      cipherdate
+    end
   end
 
   def last_four
