@@ -5,7 +5,6 @@ class Enigma
   attr_reader :message, :keys
 
   def initialize
-
   end
 
   def encrypt(message, cipherkey = nil, cipherdate = nil)
@@ -35,5 +34,4 @@ class Enigma
     end
     cipher.join
   end
-
 end

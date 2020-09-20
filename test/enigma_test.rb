@@ -2,9 +2,7 @@ require './test/test_helper'
 require './lib/enigma.rb'
 require './lib/cipher_key.rb'
 
-
-class EnigmaTest <Minitest::Test
-
+class EnigmaTest < Minitest::Test
   def setup
     @enigma = Enigma.new
   end
@@ -14,7 +12,6 @@ class EnigmaTest <Minitest::Test
   end
 
   def test_decryption
-    skip
     enigma = Enigma.new
     message = 'abcd'
     mock_shift = {  A: { 'a' => 'd', 'b' => 'a', 'c' => 'b', 'd' => 'c' },
@@ -26,7 +23,6 @@ class EnigmaTest <Minitest::Test
   end
 
   def test_cipher_can_encrypt
-    skip
     message = 'abcd'
     mock_shift = {  A: { 'a' => 'b', 'b' => 'c', 'c' => 'd', 'd' => 'a' },
                     B: { 'a' => 'c', 'b' => 'd', 'c' => 'a', 'd' => 'b' },
@@ -36,43 +32,35 @@ class EnigmaTest <Minitest::Test
     assert_equal expected, @enigma.cipher(message, mock_shift)
   end
 
-
   def test_encrypt_can_encrypt
-    skip
-    expected = {
-                encryption: "keder ohulw",
-                key: "02715",
-                date: "040895" }
-    assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
+    expected = { encryption: 'keder ohulw',
+                 key: '02715',
+                 date: '040895' }
+    assert_equal expected, @enigma.encrypt('hello world', '02715', '040895')
   end
 
   def test_enigma_can_decrypt
-    skip
     enigma = Enigma.new
-    expected = {
-                decryption: "hello world",
-                key: "02715",
-                date: "040895" }
-    assert_equal expected, enigma.decrypt("keder ohulw", "02715", "040895")
+    expected = { decryption: 'hello world',
+                 key: '02715',
+                 date: '040895' }
+    assert_equal expected, enigma.decrypt('keder ohulw', '02715', '040895')
   end
 
   def test_encrypt_can_encrypt_with_no_date
     enigma = Enigma.new
-    expected = {
-                encryption: "pib wdmczpu",
-                key: "02715",
-                date: Time.now.strftime('%d%m%y') }
+    expected = { encryption: 'pib wdmczpu',
+                 key: '02715',
+                 date: Time.now.strftime('%d%m%y') }
     assert_equal expected, enigma.encrypt('hello world', '02715')
   end
 
   def test_decrypt_can_decrypt_with_todays_date
     enigma = Enigma.new
-    expected = {
-                decryption: "hello world",
-                key: "02715",
-                date: Time.now.strftime('%d%m%y') }
-    encrypted = enigma.encrypt("hello world", '02715')
+    expected = { decryption: 'hello world',
+                 key: '02715',
+                 date: Time.now.strftime('%d%m%y') }
+    encrypted = enigma.encrypt('hello world', '02715')
     assert_equal expected, enigma.decrypt(encrypted[:encryption], '02715')
   end
-
 end
