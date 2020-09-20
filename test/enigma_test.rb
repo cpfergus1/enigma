@@ -66,7 +66,6 @@ class EnigmaTest <Minitest::Test
   end
 
   def test_decrypt_can_decrypt_with_todays_date
-    skip
     enigma = Enigma.new
     expected = {
                 decryption: "hello world",
