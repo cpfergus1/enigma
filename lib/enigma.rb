@@ -51,5 +51,4 @@ class Enigma
       key: key_maker.cipher_key.cipherkey,
       date: key_maker.cipher_key.cipherdate }
   end
-
 end
