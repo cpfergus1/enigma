@@ -11,4 +11,4 @@ encryption = enigma.decrypt(encrypted["encryption"], ARGV[2], ARGV[3])
 encrypted = File.open(ARGV[1],'w')
 encrypted.write JSON.dump(encryption)
 encrypted.close
-puts "Created 'decrypted.txt with the key #{enigma.cipherkey} and date #{enigma.cipherdate}"
+puts "Created 'decrypted.txt' with the key #{enigma.key_maker.cipher_key.cipherkey} and date #{enigma.key_maker.cipher_key.cipherdate}"

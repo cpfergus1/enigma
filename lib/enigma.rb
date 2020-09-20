@@ -2,13 +2,14 @@ require_relative 'cipher_key'
 require_relative 'keymaker'
 
 class Enigma
-  attr_reader :message, :keys
+  attr_reader :key_maker
 
   def initialize
+    @key_maker = ''
   end
 
   def encrypt(message, cipherkey = nil, cipherdate = nil)
-    key_maker = KeyMaker.new(1, cipherkey, cipherdate)
+    @key_maker = KeyMaker.new(1, cipherkey, cipherdate)
     key_maker.generate_keys
     { encryption: cipher(message, key_maker.keys),
       key: key_maker.cipher_key.cipherkey,
@@ -16,7 +17,7 @@ class Enigma
   end
 
   def decrypt(encryption, cipherkey, cipherdate = nil)
-    key_maker = KeyMaker.new(-1, cipherkey, cipherdate)
+    @key_maker = KeyMaker.new(-1, cipherkey, cipherdate)
     key_maker.generate_keys
     { decryption: cipher(encryption, key_maker.keys),
       key: key_maker.cipher_key.cipherkey,

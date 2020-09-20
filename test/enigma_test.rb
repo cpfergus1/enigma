@@ -63,4 +63,26 @@ class EnigmaTest < Minitest::Test
     encrypted = enigma.encrypt('hello world', '02715')
     assert_equal expected, enigma.decrypt(encrypted[:encryption], '02715')
   end
+
+  def test_enigma_can_crack_a_code
+    enigma = Enigma.new
+    encrypted = enigma.encrypt('hello world end', '80304', '291018')
+    expected = { decryption: 'hello world end',
+                 key: '80304',
+                 date: '291018' }
+    the_code = enigma.crack(encrypted[:encryption],'291018')
+    assert_equal expected, the_code
+
+    enigma = Enigma.new
+    encrypted = enigma.encrypt('hello world end')
+    expected_result_1 = 'hello world end'
+    expected_result_2 = 5
+    expected_result_3 = Time.now.strftime('%d%m%y')
+    the_code = enigma.crack(encrypted[:encryption])
+    assert_equal expected_result_1, the_code[:decryption]
+    assert_equal expected_result_2, the_code[:key].length
+    assert_equal expected_result_3, the_code[:date]
+  end
+
+
 end
