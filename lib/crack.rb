@@ -12,5 +12,5 @@ cracked = File.open(ARGV[1], 'w')
 cracked.write JSON.dump(cracked_result)
 cracked.close
 print "Created 'cracked.txt' with "
-print "the cracked key #{enigma.key_maker.cipher_key.cipherkey}."
+print "the cracked key #{enigma.key_maker.cipher_key.cipherkey}"
 puts " and date #{enigma.key_maker.cipher_key.cipherdate}."

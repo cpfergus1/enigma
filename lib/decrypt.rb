@@ -13,4 +13,4 @@ decrypted.write JSON.dump(decryption)
 decrypted.close
 print "Created 'decrypted.txt' with "
 print "the key #{enigma.key_maker.cipher_key.cipherkey} "
-puts "and date #{enigma.key_maker.cipher_key.cipherdate}"
+puts "and date #{enigma.key_maker.cipher_key.cipherdate}."
