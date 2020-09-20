@@ -1,5 +1,4 @@
 class CipherKey
-
   attr_reader :cipherkey, :cipherdate
 
   def initialize(cipherkey = nil, cipherdate = nil)
@@ -30,5 +29,4 @@ class CipherKey
   def cipher_shift(key_array, key)
     cipherkey[key_array.index(key)..(key_array.index(key) + 1)].to_i
   end
-
 end
