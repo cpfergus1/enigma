@@ -1,6 +1,7 @@
 # enigma
 enigma cypher
-<a href="https://thumbs.gfycat.com/EasygoingFeminineAuk-mobile.mp4" target="_blank"><img src="https://thumbs.gfycat.com/EasygoingFeminineAuk-mobile.mp4" alt="Turing Machine" width="720" height="1280" border="10" /></a>
+
+<img src="https://thumbs.gfycat.com/EasygoingFeminineAuk-mobile.mp4" alt="Turing Machine" width="720" height="1280" border="10" /></a>
 
 This enigma cipher program will encrypt any length of message by shifting letters based on four seperate keys. In addition, this program will allow you to decode the message and crack it if necessary. 
 
