@@ -63,4 +63,27 @@ class EnigmaTest < Minitest::Test
     encrypted = enigma.encrypt('hello world', '02715')
     assert_equal expected, enigma.decrypt(encrypted[:encryption], '02715')
   end
+
+  def test_enigma_can_crack_a_code
+    # brute force produced an alternative key solution - 53031 which produces
+    # the same shift mechanics where the modulo of 27 produces shifts of
+    # [5,6,5,8] for both keys
+    # enigma = Enigma.new
+    # encrypted = enigma.encrypt('hello world end', '80304', Time.now.strftime('%d%m%y'))
+    # expected = { decryption: 'hello world end',
+    #              key: '80304',
+    #              date: Time.now.strftime('%d%m%y') }
+    # the_code = enigma.crack(encrypted[:encryption],Time.now.strftime('%d%m%y'))
+    # assert_equal expected, the_code
+
+    enigma = Enigma.new
+    encrypted = enigma.encrypt('hello world end')
+    expected_result1 = 'hello world end'
+    expected_result2 = 5
+    expected_result3 = Time.now.strftime('%d%m%y')
+    the_code = enigma.crack(encrypted[:encryption])
+    assert_equal expected_result1, the_code[:decryption]
+    assert_equal expected_result2, the_code[:key].length
+    assert_equal expected_result3, the_code[:date]
+  end
 end

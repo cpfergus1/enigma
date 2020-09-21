@@ -2,7 +2,7 @@ require './test/test_helper'
 require './lib/cipher_key.rb'
 require './lib/keymaker'
 
-class KeyMakerTest <Minitest::Test
+class KeyMakerTest < Minitest::Test
   def test_keymaker_has_attributes
     key_maker = KeyMaker.new(1, '02715', '040895')
     assert_equal [:A, :B, :C, :D], key_maker.key_array
