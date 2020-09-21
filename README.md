@@ -1,7 +1,7 @@
 # enigma
 enigma cypher
 
-![enigma](https://gifimage.net/wp-content/uploads/2018/11/enigma-gif-7.gif)
+![enigma](https://thumbs.gfycat.com/GlaringDamagedKittiwake-size_restricted.gif)
 
 This enigma cipher program will encrypt any length of message by shifting letters based on four seperate keys. In addition, this program will allow you to decode the message and crack it if necessary. 
 
