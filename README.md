@@ -5,6 +5,18 @@ enigma cypher
 
 This enigma cipher program will encrypt any length of message by shifting letters based on four seperate keys. In addition, this program will allow you to decode the message and crack it if necessary. 
 
+To run this program, in you CLI interface just run ruby on the encrypt.rb with two file locations of the message you want to crack and where you want to save it. If you want to decrypt the message, just run decrypt from the CLI with the parameters encrypted file location, file name of location you want to save decrypted message and the corersponding key (last parameter date is optional). Cracking an encryption utilizes a brute force method which doesnt require any input except for what the encrypted file method name is and where you want to save the decrypted text. If the date is not filled out, than the date will be set to today. 
+
+
+Examples below:
+
+ruby lib/encrypt.rb message.txt encrypted.txt
+
+ruby lib/decrypt.rb encrypted.txt decrypted.txt <key> <date = optional>
+ 
+ruby lib/crack.rb encrypted.txt cracked.txt <date = optional>
+
+
 Self grading rubric:
 
 
