@@ -6,6 +6,8 @@ enigma cypher
 This enigma cipher program will encrypt any length of message by shifting letters based on four seperate keys. In addition, this program will allow you to decode the message and crack it if necessary. 
 
 Self grading rubric:
+
+
 Functionality - program follows interaction pattern and successfully encrypts/decrypts/cracks from the CLI interface. Brute force method produced another key that was applicable in decoding the interaction pattern message (same shift parameters, documented in enigma test) but I have found no issues with the solution. "3.8"
 
 Object Oriented Programming - Project has been broken down into what I believe are logical compenents and are properly encasulated. No class is too little and specific to job. All classes handle specific functionality. No use of modules or inheritance. "3"
